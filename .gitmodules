@@ -1,0 +1,3 @@
+[submodule "library/xorstr"]
+	path = library/xorstr
+	url = https://github.com/JustasMasiulis/xorstr

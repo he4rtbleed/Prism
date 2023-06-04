@@ -1,0 +1,377 @@
+<> : namespace
+() : class
+[] : function
+.  : property
+-> : return
+
+<Math>
+    [NormalizeVec3](XMFLOAT3 to_be_normalized) -> Math.XMFLOAT3
+    usage> Math.NormalizeVec3(XMFLOAT3(1.0, 1.0, 1.0))
+
+    [LerpVec3](XMFLOAT3 vec, XMFLOAT3 vec2, float lerpValue) -> Math.XMFLOAT3
+    usage> Math.LerpVec3(XMFLOAT3(1.0, 1.0, 1.0), 0.5)
+
+    [Clamp](float v, float lo, float hi) -> float
+    usage> Math.Clamp(0.5, 0.2, 0.4) -> 0.4
+
+    (XMFLOAT3)
+        .x (float)
+        .y (float)
+        .z (float)
+        support operator for ==, +, -, *, /
+
+    (XMFLOAT2)
+        .x (float)
+        .y (float)
+        support operator for ==, +, -, *, /
+
+    (Matrix)
+        [GetCameraVec] -> Math.XMFLOAT3
+        [GetCameraAngle] -> Math.XMFLOAT3
+
+    [Predict](XMFLOAT3 local, XMFLOAT3 target, XMFLOAT3 target_velocity, float projectile_velocity, float projectile_gravity) -> XMFLOAT3
+
+<Struct>
+    (BestBoneResult)
+        .bFound (bool)
+        .foundBone (int)
+        .lastFov (float)
+
+    (RayCastResult)
+        .bHitted (bool)
+        .hittedPlayer (Player)
+        .hittedBone (int)
+        .hittedVec (Math.XMFLOAT3)
+        .hittedRot (Math.XMFLOAT3)
+
+    (SkillInfo)
+        .isUsing (int)
+        .flUltGauge (float)
+        .isBlocked (int)
+        [GetCoolTime] -> XMFLOAT2       x: MAX, y: current
+
+    (InputInfo)
+        .key_forward (bool)
+        .key_back (bool)
+        .key_left (bool)
+        .key_right (bool)
+        .key_jump (bool)
+        .key_duck (bool)
+        .key_reload (bool)
+        .key_mouse_left (bool)
+        .key_mouse_right (bool)
+        .key_interact (bool)
+        .key_melee (bool)
+        .key_ability_1 (bool)
+        .key_ability_2 (bool)
+        .key_ability_3 (bool)
+
+    (MouseInput)
+        .dx (int)
+        .dy (int)
+        .btn (int)
+
+    (ResourceInfo)
+
+<Game>
+    .Engine (Engine)
+        [GetLocalPlayer] -> Player
+        [GetPlayerAt](int index) -> Player
+        [GetPlayerCount] -> int
+        [GetTriggersAt](int index) -> Triggers
+        [GetTriggersCount] -> int
+        [GetProjectileAt](int index) -> Projectile
+        [GetProjectileCount] -> int
+        [GetViewMatrix] -> Math.Matrix
+        [GetFov] -> float
+        [SetFov](float fov)
+        [WorldToScreen](XMFLOAT3 worldPos, XMFLOAT2 outPos) -> bool
+        [IsInFov](XMFLOAT3 worldPos) -> float
+        [GetTick] -> int
+        [LineOfSight](int mask_enums_id = 1) -> RayCastResult
+        [RayCast](XMFLOAT3 from, XMFLOAT3 to, int mask_enums_id = 1) -> RayCastResult
+        [RayCastWithIgnore](XMFLOAT3 from, XMFLOAT3 to, Player player_ignored, int mask_enums_id = 1) -> RayCastResult
+        [FindBestBone](Player player, float fov, int preference_bone_id, int mask_enums_id = 1) -> Struct.BestBoneResult
+        [GetMapId] -> int64
+        [GetInputInfo] -> InputInfo
+        [GetSensitivity] -> float
+        [SetSensitivity](float value)
+        [GetController] -> Control
+        [GetPath] -> string
+
+    .Renderer (Renderer)
+        [GetWidth] -> float
+        [GetHeight] -> float
+        [DrawText](string text, float x, float y, float size, int color, bool center)
+        [DrawBox](XMFLOAT2 from, XMFLOAT2 to, int color)
+        [DrawBoxFilled](XMFLOAT2 from, XMFLOAT2 to, int color, float rounding, int roundingFlags = -1)
+        [DrawLine](XMFLOAT2 from, XMFLOAT2 to, int color, float thickness)
+        [Draw3DLine](XMFLOAT3 from, XMFLOAT3 to, int color, float thickness)
+        [DrawCircle](float x, float y, float radius, int color, float thickness)
+        [DrawCircleFilled](float x, float y, float radius, int color)
+        [DrawResource](float x, float y, int w, int h, ResourceInfo resource)
+        [LoadResource](string file_path) -> ResourceInfo
+        [DrawFOV](float fov, int color, float thickness)
+
+    .VarManager (VarManager)
+        [Clear]
+        [Size] -> int
+        [IsEmpty] -> bool
+        [IsExist](string key) -> bool
+        [Erase](string key) -> bool
+        ※ if the variable type is different then it returns NULL ※
+        [get_var_as_bool](string key) -> bool
+        [set_var_as_bool](string key, bool value)
+        [get_var_as_int](string key) -> int
+        [set_var_as_int](string key, int value)
+        [get_var_as_int64](string key) -> int64
+        [set_var_as_int64](string key, int64 value)
+        [get_var_as_float](string key) -> float
+        [set_var_as_float](string key, float value)
+        [get_var_as_double](string key) -> double
+        [set_var_as_double](string key, double value)
+
+    <Settings>
+        .settings_limit_fps (float)
+        usage> this value represents the sleep time per cycle of the OnUpdate thread (default: 7.0(ms))
+        usage> to set 5hz, this value must be 200.0(ms)
+        .settings_draw_fov (bool)
+        .settings_esp_text (bool)
+        .settings_esp_skeleton (bool)
+        .settings_esp_skeleton_color_enemy_visible (int)
+        .settings_esp_skeleton_color_enemy_invisible (int)
+        .settings_esp_skeleton_useraycast (bool)
+        .settings_esp_highlight (bool)
+        .settings_esp_highlight_color_enemy_visible (int)
+        .settings_esp_highlight_color_enemy_invisible (int)
+        .settings_esp_highlight_color_team (int)
+
+    <Utils>
+        [IsKeyPressed](int vk_code) -> bool
+        [SendInput](int dx, int dy, uint mouseData, uint dwFlags) -> uint
+
+(Player)
+    Constructor<void(*) (void)>
+    usage> Player()
+    [IsValid] -> bool
+    [GetPlayerId] -> int64
+    [GetMesh] -> Mesh
+    [GetTeam] -> Team
+    [GetStat] -> Stat
+    [GetHealth] -> Health
+    [GetIdentifier] -> Identifier
+    [GetHighlight] -> Highlight
+    [GetVisibility] -> Visibility
+    [GetSkill] -> Skill
+    [GetAngle] -> Angle
+    [GetBoneId](int bone_enums_id) -> int
+    usage> player:GetMesh():GetBonePos(player:GetBoneId(BONE_HEAD))
+    [IsEnemy] -> bool
+
+(Triggers)
+    [GetPlayer] -> Player
+    [GetTriggersId] -> int64
+    [GetMesh] -> Mesh
+    [GetTeam] -> Team
+    [GetHealth] -> Health
+    [IsEnemy] -> bool
+
+(Projectile)
+    [GetProjectileId] -> int64
+    [GetProjectileInfo] -> ProjectileInfo
+    [GetOwner] -> Player
+    [IsEnemy] -> bool
+
+(Control)
+    .move_side (byte)
+    .move_forward (byte)
+    [SetKeyCode](int key_enums_id)
+    [GetAngle] -> XMFLOAT3
+    [SetAngle] -> XMFLOAT3
+
+(Mesh)
+    [GetVelocity] -> XMFLOAT3
+    [GetLocation] -> XMFLOAT3
+    [GetBonePos](int bone_id) -> XMFLOAT3
+
+(Stat)
+    [GetBattleTag] -> string
+
+(Health)
+    [GetHealth] -> XMFLOAT2     x: MAX, y: current
+    [GetArmour] -> XMFLOAT2     x: MAX, y: current
+    [GetBarrier] -> XMFLOAT2    x: MAX, y: current
+    [GetLife] -> XMFLOAT2       x: MAX, y: current
+    .isBarrierProjected -> bool
+    .isImmortal -> bool
+
+(Identifier)
+    .HeroID (int64)
+    [GetHeroName] -> string
+
+(Highlight)
+    [SetHighlightInfo](int highlight_type, int highlight_color)
+
+(Visibility)
+    [IsVisible] -> bool
+
+(Skill)
+    [GetSkillInfo](int skill_enums_id, int skill_enums_extra_id = 0) -> SkillInfo
+
+(Angle)
+    [GetAngleVec] -> XMFLOAT3
+
+(ProjectileInfo)
+    [GetVelocity] -> XMFLOAT3
+    [GetLocation] -> XMFLOAT3
+
+
+-ENUM-
+    -BONE-
+        BONE_HEAD = 1,
+        BONE_NECK = 2,
+        BONE_SPINE_01 = 3,
+        BONE_SPINE_02 = 4,
+        BONE_PELVIS = 5,
+        BONE_LEFT_UPPER_ARM = 6,
+        BONE_LEFT_LOWER_ARM = 7,
+        BONE_LEFT_HAND = 8,
+        BONE_RIGHT_UPPER_ARM = 9,
+        BONE_RIGHT_LOWER_ARM = 10,
+        BONE_RIGHT_HAND = 11,
+        BONE_LEFT_THIGH = 12,
+        BONE_LEFT_CALF = 13,
+        BONE_LEFT_FOOT = 14,
+        BONE_RIGHT_THIGH = 15,
+        BONE_RIGHT_CALF = 16,
+        BONE_RIGHT_FOOT = 17
+
+    -INPUT-
+        INPUT_NULL = 0x0,
+        INPUT_LMOUSE = 0x1,
+        INPUT_RMOUSE = 0x2,
+        INPUT_INTERACTION = 0x4,
+        INPUT_SKILL1 = 0x8,
+        INPUT_SKILL2 = 0x10,
+        INPUT_ULT = 0x20,
+        INPUT_JUMP = 0x40,
+        INPUT_DUCK = 0x80,
+        INPUT_RELOAD = 0x400,
+        INPUT_MELEE = 0x800
+
+    -HERO-
+        HERO_REAPER = 0x02E0000000000002,
+        HERO_TRACER = 0x02E0000000000003,
+        HERO_MERCY = 0x02E0000000000004,
+        HERO_HANZO = 0x02E0000000000005,
+        HERO_TORBJORN = 0x02E0000000000006,
+        HERO_REINHARDT = 0x02E0000000000007,
+        HERO_PHARAH = 0x02E0000000000008,
+        HERO_WINSTON = 0x02E0000000000009,
+        HERO_WIDOWMAKER = 0x02E000000000000A,
+        HERO_BASTION = 0x02E0000000000015,
+        HERO_SYMMETRA = 0x02E0000000000016,
+        HERO_ZENYATTA = 0x02E0000000000020,
+        HERO_GENJI = 0x02E0000000000029,
+        HERO_ROADHOG = 0x02E0000000000040,
+        HERO_MCCREE = 0x02E0000000000042,
+        HERO_JUNKRAT = 0x02E0000000000065,
+        HERO_ZARYA = 0x02E0000000000068,
+        HERO_SOLDIER76 = 0x02E000000000006E,
+        HERO_LUCIO = 0x02E0000000000079,
+        HERO_DVA = 0x02E000000000007A,
+        HERO_MEI = 0x02E00000000000DD,
+        HERO_ANA = 0x02E000000000013B,
+        HERO_SOMBRA = 0x02E000000000012E,
+        HERO_ORISA = 0x02E000000000013E,
+        HERO_DOOMFIST = 0x02E000000000012F,
+        HERO_MOIRA = 0x02E00000000001A2,
+        HERO_BRIGITTE = 0x02E0000000000195,
+        HERO_WRECKINGBALL = 0x02E00000000001CA,
+        HERO_ASHE = 0x02E0000000000200,
+        HERO_ECHO = 0x02E0000000000206,
+        HERO_BAPTISTE = 0x02E0000000000221,
+        HERO_SIGMA = 0x02E000000000023B,
+        HERO_TRAININGBOT1 = 0x02E000000000016B,
+        HERO_TRAININGBOT2 = 0x02E000000000016C,
+        HERO_TRAININGBOT3 = 0x02E000000000016D,
+        HERO_TRAININGBOT4 = 0x02E000000000016E
+
+    -SKILL-
+        SKILL_1 = 1,
+        SKILL_2 = 2,
+        SKILL_L = 3,
+        SKILL_R = 4,
+        SKILL_ULT = 5,
+        SKILL_COOLTIME = 6,
+        SKILL_REMAINTIME = 7,
+        SKILL_DELAY = 8
+
+        [MEI]
+            RIGHT_CLICK_CHARGING    -   0x1937      0xA
+
+        [ASHE]
+            ZOOMED_ATTACK_DELAY     -   0x753C      0x8
+
+        [DOOMFIST]
+            CHARGING_R              -   0x636       0x5
+            CHARGING_E              -   0x28E8      0x0
+
+        [HANZO]
+            CHARGING                -   0x2A5       0xA
+            usage> GetSkillInfo(0x2A5, 0xA).GetCoolTime().y -> charging value 0.0 to 1.0
+
+        [WIDOWMAKER]
+            CHARGING                -   0xAE        0x9
+
+        [BRIGITTE]
+            SHIELDBASH              -   0x3306      0x4
+
+        [GENJI]
+            ULT_USING               -   0x1510      0x0
+        
+        [TORBJORN]
+            SHIFT_COOL              -   0x189C      0x0
+            E_COOL                  -   0x1F89      0x0
+
+        [ZARYA]
+            BARRIER_STATE_FOR_ALL_HEROES - 0x2BB    0x5
+
+        [STATE]
+            IS_RELOADING            -   0x4BF       0x0
+
+            IS_GRABBED (ROADHOG)    -   0x79A       0x0
+
+            IS_STUNNED (ALSO SLEEP) -   0x378       0x0
+
+            IS_HACKED               -   0x22D0      0x0
+
+            IS_SLEPT                -   0x2018      0x0
+
+            IS_HEAL_BANNED          -   0x200A      0x0
+
+            IS_FROZEN               -   0x1A83      0x0
+
+            IS_TRAPPED (JUNKRAT)    -   0x85F       0x0
+        
+        [ETC]
+            BULLET_COUNT            -   0x35        BRUTEFORCE_PLEASE
+            example)
+            local Skill = Game.Engine:GetLocalPlayer():GetSkill()
+            for i = 0, 0x30 do
+                local info = Skill:GetSkillInfo(0x35, i)
+                if (info) then
+                    local cool = info:GetCoolTime()
+                    Game.Renderer:DrawText(i .. ":\t" .. cool.x .. ", " .. cool.y, 10, 10 + i*16, 16, 0xffffffff, false)
+                end
+            end
+
+            SKILL_COUNT (TRACER'S BLINK, BRIGITTE'S COOKIE, SYMMETRA'S TURRET)  -   0xB        BRUTEFORCE_PLEASE
+
+    -RAYCAST MASK-
+        MASK_DEFAULT = 0,
+        MASK_IGNORESHIELD = 1,
+        MASK_FAILED_ON_PLAYER_IGNORE_OBJECT = 2,
+        MASK_FAILED_ON_OBJECT_IGNORE_PLAYER = 3,
+        MASK_IGNOREALL = 4
+        info) current esp using MASK_IGNOREALL if u wanna ignore shield on aimbot then use MASK_IGNORESHIELD

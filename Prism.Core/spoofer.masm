@@ -1,0 +1,38 @@
+.code
+    _syscaller proc
+	    mov		r10, rcx
+	    mov		rax, [rsp + 40]
+	    add		rsp, 16
+	    syscall
+	    sub		rsp, 16
+	    ret
+    _syscaller endp
+
+    _spoofer_stub proc
+        mov [rax + 10h], rbx
+        mov [rax + 18h], rsi
+        mov rbx, [rsp]
+        mov [rax + 20h], rbx
+
+        mov rbx, [rax]
+        mov [rsp], rbx
+        mov rbx, rax
+    
+        mov rsi, fixup
+
+        jmp QWORD PTR [rax + 8h]
+
+        fixup:
+        mov rsi, [rbx + 20h]
+        mov [rsp], rsi
+        mov rsi, [rbx + 18h]
+        mov rbx, [rbx + 10h]
+
+        ret
+    _spoofer_stub endp
+
+    _set_rax_stub proc
+        mov rax, rcx
+        ret
+    _set_rax_stub endp
+end

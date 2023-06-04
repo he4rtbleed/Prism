@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="d3d\ImGui\imgui.cpp">
+      <Filter>d3d\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="d3d\ImGui\imgui_draw.cpp">
+      <Filter>d3d\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="d3d\ImGui\imgui_impl_dx11.cpp">
+      <Filter>d3d\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="d3d\renderer.cpp">
+      <Filter>d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="function.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
+    <ClCompile Include="engine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="luaengine.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="var_manager.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="utils">
+      <UniqueIdentifier>{ba6b7710-df6b-47d1-8280-08f9f70580a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="decrypt">
+      <UniqueIdentifier>{13edd062-7dab-43bd-a058-4aea2e6dca68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="d3d">
+      <UniqueIdentifier>{af76b62b-c1ce-4dec-aefd-9b65fdb4b575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="d3d\ImGui">
+      <UniqueIdentifier>{262359cb-7cc4-42e5-a18b-89fa47d6f7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="function">
+      <UniqueIdentifier>{a87d9ae4-2e97-4da7-ae92-ab304831ce4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{d51ac6c2-9fde-4295-bd14-c13f7cb15909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{f5dd02c1-d551-4f9a-94a9-1cab4d00cc1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{18d2f610-1494-48b1-a2db-22ff1912c6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="license">
+      <UniqueIdentifier>{9f0e68db-5f25-426e-a8e3-cbca0ce78b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{0d7bcda7-9e81-4f98-8925-d35fc156cc41}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="memory.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="decrypter.hpp">
+      <Filter>decrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="spoofer.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\imgui.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\imgui_impl_dx11.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\imgui_internal.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\stb_rect_pack.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\stb_textedit.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\stb_truetype.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\ImGui\imconfig.h">
+      <Filter>d3d\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\fonts.hpp">
+      <Filter>d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\hooker.hpp">
+      <Filter>d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="d3d\renderer.hpp">
+      <Filter>d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="function.hpp">
+      <Filter>function</Filter>
+    </ClInclude>
+    <ClInclude Include="engine.hpp">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="component.hpp">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.hpp">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.hpp">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="luaengine.hpp">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="exported_engine.hpp">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\license\license.hpp">
+      <Filter>license</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.hpp">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="var_manager.hpp">
+      <Filter>lua</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="spoofer.masm">
+      <Filter>utils</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>
